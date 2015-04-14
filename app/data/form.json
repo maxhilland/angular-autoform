@@ -28,12 +28,8 @@
     "type": "Text",
     "presentation": {
       "label": "Full Name",
-      "type": "name",
       "visible": "none",
       "order": 9
-    },
-    "validation": {
-      "required": true
     }
   },
   "firstName": {
@@ -44,6 +40,7 @@
       "order": 3
     },
     "validation": {
+      "required": true,
       "minLen": 1,
       "maxLen": 50
     }
@@ -56,6 +53,7 @@
       "order": 4
     },
     "validation": {
+      "required": true,
       "minLen": 1,
       "maxLen": 50
     }

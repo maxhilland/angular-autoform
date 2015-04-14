@@ -5,19 +5,31 @@
          name="{{input.$key}}"
          type="{{input.presentation.visible == 'none' ? 'hidden' : input.presentation.type}}"
          ng-model="input.presentation[type]"
+         ng-change="(input.$key == 'firstName' || input.$key == 'lastName') ? setName(userForm) : ''"
          ng-minlength="input.validation.minLen"
          ng-maxlength="input.validation.maxLen"
          ng-required="input.validation.required">
-  <p ng-switch-when="email" ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
-  <p ng-switch-when="password" ng-show="userForm.password.$invalid && !userForm.password.$pristine" class="help-block">Enter a password.</p>
-  <p ng-switch-when="firstName" ng-show="userForm.firstName.$error.minlength" class="help-block">First Name is too short.</p>
-  <p ng-switch-when="firstName" ng-show="userForm.firstName.$error.maxlength" class="help-block">First Name is too long.</p>
-  <p ng-switch-when="lastName" ng-show="userForm.lastName.$error.minlength" class="help-block">Last Name is too short.</p>
-  <p ng-switch-when="lastName" ng-show="userForm.lastName.$error.maxlength" class="help-block">Last Name is too long.</p>
+  <div ng-switch-when="email" ng-messages="userForm.email.$error">
+    <div ng-message="required" ng-if="!userForm.$pristine">Enter an email.</div>
+    <div ng-message="email">Enter a valid e-mail.</div>
+  </div>
+  <div ng-switch-when="password" ng-messages="userForm.password.$error">
+    <div ng-message="required" ng-if="!userForm.$pristine">Enter a password.</div>
+  </div>
+  <div ng-switch-when="firstName" ng-messages="userForm.firstName.$error">
+    <div ng-message="required" ng-if="!userForm.$pristine">Enter a first name.</div>
+    <div ng-message="minlength">First Name is too short.</div>
+    <div ng-message="maxlength">First Name is too long.</div>
+  </div>
+  <div ng-switch-when="lastName" ng-messages="userForm.lastName.$error">
+    <div ng-message="required" ng-if="!userForm.$pristine">Enter a last name.</div>
+    <div ng-message="minlength">Last Name is too short.</div>
+    <div ng-message="maxlength">Last Name is too long.</div>
+  </div>
 </div>
-<button type="submit" class="btn btn-default" style="float:left">Submit</button>
-<span id="form-valid" class="glyphicon glyphicon-thumbs-up" style="font-size:30px; margin-left:10px; float:left; display:none"></span>
-<span id="form-invalid" class="glyphicon glyphicon-thumbs-down" style="font-size:30px; margin-left:10px; float:left; display:none"></span>
-<div style="clear:both"></div>
+<button type="submit" class="btn btn-default">Submit</button>
+<span ng-show="userForm.$submitted && userForm.$valid" class="form-validate glyphicon glyphicon-thumbs-up"></span>
+<span ng-show="userForm.$submitted && userForm.$invalid" class="form-validate glyphicon glyphicon-thumbs-down"></span>
+<div class="clearfix"></div>
 <hr>
 <pre>{{userForm | json}}</pre>

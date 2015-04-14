@@ -23,7 +23,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
-        <form ng-view name="userForm" role="form" ng-submit="submitForm(userForm)" novalidate></form>
+        <form ng-view name="userForm" role="form" ng-submit="submitForm(userForm.$valid)" novalidate></form>
       </div>
     </div>
   </div>
@@ -33,6 +33,7 @@
   -->
   <script src="bower_components/angular/angular.min.js"></script>
   <script src="bower_components/angular-route/angular-route.min.js"></script>
+  <script src="bower_components/angular-messages/angular-messages.min.js"></script>
   <script src="app.js"></script>
   <script src="form/form.js"></script>
   <script src="components/version/version.js"></script>

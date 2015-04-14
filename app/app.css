@@ -32,3 +32,13 @@
 form {
   margin-top:50px;
 }
+
+button[type=submit] {
+  float:left;
+}
+
+.form-validate {
+  font-size:30px;
+  margin-left:10px;
+  float:left;
+}

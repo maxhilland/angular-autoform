@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('autoform.form', ['ngRoute'])
+angular.module('autoform.form', ['ngRoute', 'ngMessages'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/form', {
@@ -15,16 +15,22 @@ angular.module('autoform.form', ['ngRoute'])
     $scope.formData = {};
     $scope.formData.inputs = res.data;
 
-    $scope.submitForm = function(userForm) {
-      if (userForm.$valid) {
-        document.getElementById('form-valid').style.display = 'block';
-        document.getElementById('form-invalid').style.display = 'none';
+    $scope.setName = function(userForm) {
+      var firstName = userForm.firstName.$viewValue,
+          lastName = userForm.lastName.$viewValue,
+          fullName = firstName + ' ' + lastName;
+
+          userForm.fullName.$viewValue = fullName;
+    }
+
+    $scope.submitForm = function(isValid) {
+      if (isValid) {
+        alert('Form valid.');
       } else {
-        document.getElementById('form-invalid').style.display = 'block';
-        document.getElementById('form-valid').style.display = 'none';
+        alert('Form invalid.');
       }
     }
-  })
+  });
 })
 
 .filter('toArray', function () {
