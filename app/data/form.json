@@ -1,0 +1,63 @@
+{
+  "email": {
+    "docs": "Email address of the user. Used for authentication. Must be unique.",
+    "type": "Text",
+    "presentation": {
+      "label": "Email",
+      "type": "email",
+      "order": 1
+    },
+    "validation": {
+      "required": true
+    }
+  },
+  "password": {
+    "docs": "Encoded user password. Used for authentication. Write unencoded, saves encoded.",
+    "type": "Text",
+    "presentation": {
+      "label": "Password",
+      "type": "password",
+      "order": 2
+    },
+    "validation": {
+      "required": true
+    }
+  },
+  "fullName": {
+    "docs": "Human's full name. For client display and human readability",
+    "type": "Text",
+    "presentation": {
+      "label": "Full Name",
+      "type": "name",
+      "visible": "none",
+      "order": 9
+    },
+    "validation": {
+      "required": true
+    }
+  },
+  "firstName": {
+    "docs": "Human's first name. For client display and human readability.",
+    "type": "Text",
+    "presentation": {
+      "label": "First Name",
+      "order": 3
+    },
+    "validation": {
+      "minLen": 1,
+      "maxLen": 50
+    }
+  },
+  "lastName": {
+    "docs": "Human's last name. For client display and human readability.",
+    "type": "Text",
+    "presentation": {
+      "label": "Last Name",
+      "order": 4
+    },
+    "validation": {
+      "minLen": 1,
+      "maxLen": 50
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<div class="form-group" ng-repeat="input in formData.inputs | toArray | orderBy : 'presentation.order'" ng-switch on="input.$key">
+  <label ng-hide="input.presentation.visible == 'none'" for="{{input.$key}}">{{input.presentation.label}}</label>
+  <input id="{{input.$key}}"
+         class="form-control"
+         name="{{input.$key}}"
+         type="{{input.presentation.visible == 'none' ? 'hidden' : input.presentation.type}}"
+         ng-model="input.presentation[type]"
+         ng-minlength="input.validation.minLen"
+         ng-maxlength="input.validation.maxLen"
+         ng-required="input.validation.required">
+  <p ng-switch-when="email" ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+  <p ng-switch-when="password" ng-show="userForm.password.$invalid && !userForm.password.$pristine" class="help-block">Enter a password.</p>
+  <p ng-switch-when="firstName" ng-show="userForm.firstName.$error.minlength" class="help-block">First Name is too short.</p>
+  <p ng-switch-when="firstName" ng-show="userForm.firstName.$error.maxlength" class="help-block">First Name is too long.</p>
+  <p ng-switch-when="lastName" ng-show="userForm.lastName.$error.minlength" class="help-block">Last Name is too short.</p>
+  <p ng-switch-when="lastName" ng-show="userForm.lastName.$error.maxlength" class="help-block">Last Name is too long.</p>
+</div>
+<button type="submit" class="btn btn-default" style="float:left">Submit</button>
+<span id="form-valid" class="glyphicon glyphicon-thumbs-up" style="font-size:30px; margin-left:10px; float:left; display:none"></span>
+<span id="form-invalid" class="glyphicon glyphicon-thumbs-down" style="font-size:30px; margin-left:10px; float:left; display:none"></span>
+<div style="clear:both"></div>
+<hr>
+<pre>{{userForm | json}}</pre>
